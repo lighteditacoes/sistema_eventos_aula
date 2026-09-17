@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Eventos{% endblock title %}
+
+{% block content %}
+
+    <h1>Eventos</h1>
+    <p class="subtitulo">Eventos cadastrados no sistema.</p>
+
+    <div class="lista">
+
+        {% if lista_eventos %}
+
+                {% for evento in lista_eventos %}
+
+                    <article class="evento">
+                        <h3>{{evento.nome}}</h3>
+                        <p>📅 {{evento.data}}</p>
+                        <p>📍 {{evento.local}}</p>
+                        <p>👥 {{evento.quantidade_participantes}}</p>
+                        <div>
+                            <a href="detalhe.html">Detalhes</a>
+                            <a href="editar.html">Editar</a>
+                        </div>
+                    </article>
+
+                {% endfor %}
+
+        {% else %}
+
+            <p>Não há eventos disponíveis.</p>
+
+        {% endif %}
+
+    </div>
+
+{% endblock content %}

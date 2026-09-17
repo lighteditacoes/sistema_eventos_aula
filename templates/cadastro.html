@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastrar{% endblock title %}
+
+{% block content %}
+        <h1>Cadastrar evento</h1>
+        <p class="subtitulo">Preencha os dados do evento.</p>
+
+        <form action="{{ url_for('eventos.cadastrar_evento') }}" method="post">
+
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" rows="4" required></textarea>
+
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" required>
+
+            <label for="local">Local:</label>
+            <input type="text" id="local" name="local" required>
+
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="{{evento.categoria}}">Selecione...</option>
+                <option>Workshop</option>
+                <option>Palestra</option>
+                <option>Curso</option>
+                <option>Conferência</option>
+                <option>Feira</option>
+                <option>Festival</option>
+                <option>Outro</option>
+            </select>
+
+            <label for="participantes">Participantes:</label>
+            <input type="number" id="participantes" name="participantes" min="1" required>
+
+            <div class="botoes">
+                <a href="{{ url_for('eventos.lista_eventos') }}" class="botao">Cancelar</a>
+                <button type="submit" class="botao">Cadastrar</button>
+            </div>
+
+        </form>
+{% endblock content %}

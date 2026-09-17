@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Início{% endblock title %}
+
+{% block content %}
+
+    <section class="inicio">
+        <h1>Sistema de Eventos</h1>
+        <p>Cadastre e consulte seus eventos de forma simples.</p>
+
+        <a href="{{ url_for('eventos.lista_eventos') }}" class="botao">Ver eventos</a>
+    </section>
+
+    <section>
+        <h2>Próximos eventos</h2>
+
+        <div class="lista">
+
+            {% if lista_eventos %}
+
+                {% for evento in lista_eventos %}
+
+                    <article class="evento">
+                        <h3>{{evento.nome}}</h3>
+                        <p>📅 {{evento.data}}</p>
+                        <p>📍 {{evento.local}}</p>
+                        <a href="{{ url_for('eventos.detalhes_evento', id=evento.id_evento) }}">Ver detalhes</a>
+                    </article>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p>Não há eventos disponíveis.</p>
+
+            {% endif %}
+
+        </div>
+    </section>
+
+{% endblock content %}

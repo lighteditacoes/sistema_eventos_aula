@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes{% endblock title %}
+
+{% block content %}
+
+    <a href="{{ url_for('eventos.home') }}">← Voltar</a>
+
+    <article class="detalhes">
+
+        <h1>{{evento.nome}}</h1>
+
+        <p>
+            {{evento.descricao}}
+        </p>
+
+        <hr>
+
+        <p><strong>Data:</strong> {{evento.data}}</p>
+        <p><strong>Local:</strong> {{evento.local}}</p>
+        <p><strong>Categoria:</strong> {{evento.categoria}}</p>
+        <p><strong>Participantes:</strong> {{evento.quantidade_participantes}}</p>
+
+        <div class="botoes">
+            <a href="{{ url_for('eventos.editar_evento', id=evento.id_evento) }}" class="botao">Editar</a>
+
+            <form action="{{ url_for('eventos.excluir_evento', id=evento.id_evento) }}" method="post">
+                <button class="botao excluir" type="submit">
+                    Excluir
+                </button>
+            </form>
+        </div>
+
+    </article>
+
+{% endblock content %}
