@@ -24,7 +24,7 @@
         <div class="botoes">
             <a href="{{ url_for('eventos.editar_evento', id=evento.id_evento) }}" class="botao">Editar</a>
 
-            <form action="{{ url_for('eventos.excluir_evento', id=evento.id_evento) }}" method="post">
+            <form action="{{ url_for('eventos.excluir_evento', id=evento.id_evento) }}" method="post" class="form-deletar">
                 <button class="botao excluir" type="submit">
                     Excluir
                 </button>

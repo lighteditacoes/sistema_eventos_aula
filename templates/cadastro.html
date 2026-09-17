@@ -6,7 +6,7 @@
         <h1>Cadastrar evento</h1>
         <p class="subtitulo">Preencha os dados do evento.</p>
 
-        <form action="{{ url_for('eventos.cadastrar_evento') }}" method="post">
+        <form action="{{ url_for('eventos.cadastrar_evento') }}" onsubmit="alert('Cadastrado com sucesso!')" method="post">
 
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
@@ -22,7 +22,7 @@
 
             <label for="categoria">Categoria:</label>
             <select id="categoria" name="categoria" required>
-                <option value="{{evento.categoria}}">Selecione...</option>
+                <option>Selecione...</option>
                 <option>Workshop</option>
                 <option>Palestra</option>
                 <option>Curso</option>
