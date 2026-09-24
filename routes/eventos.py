@@ -27,6 +27,38 @@ def cadastrar_evento():
         categoria = request.form["categoria"]
         quantidade_participantes = request.form["participantes"]
 
+        erro = []
+
+        if not nome or not descricao or not data or not local or not categoria or quantidade_participantes is None:
+            erro.append("Todos os campos devem ser preenchidos.")
+        else:
+            if len(nome) < 6 or len(nome) > 60:
+                erro.append("Nome deve ter entre 6 e 60 caracteres.")
+
+            if len(descricao) > 250:
+                erro.append("A descrição deve ter no máximo 250 caracteres.")
+
+            if len(data) != 10:
+                erro.append("A data deve ter exatamente 10 caracteres.")
+
+            if len(local) > 100:
+                erro.append("O local deve ter no máximo 100 caracteres.")
+
+            if len(categoria) < 3 or len(categoria) > 30:
+                erro.append("A categoria deve ter entre 3 e 30 caracteres.")
+
+            try:
+                qtd = int(quantidade_participantes)
+                if qtd < 0:
+                    erro.append("A quantidade de participantes não pode ser negativa.")
+            except (ValueError, TypeError):
+                erro.append("A quantidade de participantes deve ser um número inteiro válido.")
+
+        if erro:
+            formulario=request.form
+            print(formulario)
+            return render_template("cadastro.html", erro=erro, formulario=request.form)
+
         evento = Evento(nome=nome, descricao=descricao, data=data,
                         local=local, categoria=categoria,
                         quantidade_participantes=quantidade_participantes)
