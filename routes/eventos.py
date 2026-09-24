@@ -1,17 +1,20 @@
 from flask import Blueprint, render_template, url_for, redirect, request
 from models.models import Evento
 from database import db
+from datetime import datetime
 
 eventos_bp = Blueprint("eventos", __name__)
 
 @eventos_bp.route('/')
 def home():
-    lista_eventos = Evento.query.limit(3).all()
+    data = datetime.now().date()
+    print(data)
+    lista_eventos = Evento.query.where(Evento.data >= data).order_by(Evento.data).limit(3).all()
     return render_template("index.html", lista_eventos=lista_eventos)
 
 @eventos_bp.route('/eventos')
 def lista_eventos():
-    lista_eventos = Evento.query.all()
+    lista_eventos = Evento.query.order_by(Evento.data.desc()).all()
     return render_template("eventos.html", lista_eventos=lista_eventos)
 
 @eventos_bp.route('/cadastrar', methods=["GET", "POST"])

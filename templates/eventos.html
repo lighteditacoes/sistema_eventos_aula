@@ -19,8 +19,8 @@
                         <p>📍 {{evento.local}}</p>
                         <p>👥 {{evento.quantidade_participantes}}</p>
                         <div>
-                            <a href="detalhe.html">Detalhes</a>
-                            <a href="editar.html">Editar</a>
+                            <a href="{{ url_for('eventos.detalhes_evento', id=evento.id_evento) }}">Detalhes</a>
+                            <a href="{{ url_for('eventos.editar_evento', id=evento.id_evento) }}">Editar</a>
                         </div>
                     </article>
 

@@ -43,4 +43,12 @@
 
     </form>
 
+    <script>
+        let opcoes = document.getElementsByTagName("option");
+        for (let index = 0; index < opcoes.length; index++) {
+            if (opcoes[index].textContent == "{{evento.categoria}}"){
+                opcoes[index].selected = true;
+            }
+        }
+    </script>
 {% endblock content %}
